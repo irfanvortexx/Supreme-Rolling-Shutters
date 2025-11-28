@@ -5,21 +5,817 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supreme Rolling Shutters</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+         :root {
+            --primary: #2c3e50;
+            --secondary: #e74c3c;
+            --accent: #3498db;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("body.jpg") no-repeat center center fixed;
+            background-size: cover;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .alt {
+            background-color: #f9f9f9;
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4 {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            color:var(--light);
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        h3 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            color:var(--primary);
+        }
+        
+        h3:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        p {
+            margin-bottom: 15px;
+            color:var(--light);
+        }
+        h4 {
+            margin-bottom: 15px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn.primary {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .btn.primary:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .glass-box {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+        /* Header Styles */
+        
+        .site-header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav {
+            display: flex;
+        }
+        
+        .nav a {
+            text-decoration: none;
+            color: var(--dark);
+            margin-left: 25px;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .nav a:hover {
+            color: var(--secondary);
+        }
+        
+        .nav a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: var(--transition);
+        }
+        
+        .nav a:hover:after {
+            width: 100%;
+        }
+        /* Hero Section */
+        
+        .home {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('home.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 180px 0 100px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .home h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .home p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        /* Media Grid */
+        
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .media-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .media-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .media-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .media-item span {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+        /* Slideshow */
+        
+        .slideshow-container {
+            max-width: 800px;
+            height: 450px;
+            /* Important: prevents layout collapse */
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border-radius: 8px;
+        }
+        /* Slides default hidden */
+        
+        .mySlides {
+            display: none;
+        }
+        /* Show first slide before JS loads */
+        
+        .mySlides:first-child {
+            display: block;
+        }
+        
+        .mySlides img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+        }
+        /* Prev/Next arrows */
+        
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            padding: 16px;
+            color: #fff;
+            font-weight: bold;
+            font-size: 20px;
+            user-select: none;
+            background: rgba(0, 0, 0, 0.4);
+            transform: translateY(-50%);
+        }
+        
+        .next {
+            right: 0;
+        }
+        
+        .prev:hover,
+        .next:hover {
+            background: rgba(0, 0, 0, 0.75);
+        }
+        /* Description text */
+        
+        .text {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 14px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.65);
+            color: #fff;
+            font-weight: 600;
+        }
+        /* Slide number text */
+        
+        .numbertext {
+            position: absolute;
+            top: 0;
+            padding: 8px 12px;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            font-size: 13px;
+        }
+        /* Dots */
+        
+        .dots-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .dot {
+            height: 14px;
+            width: 14px;
+            display: inline-block;
+            margin: 0 4px;
+            border-radius: 50%;
+            background: #bbb;
+            cursor: pointer;
+            transition: background .3s;
+        }
+        
+        .dot.active,
+        .dot:hover {
+            background: var(--primary);
+        }
+        /* Fade animation */
+        
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.3s;
+        }
+        
+        @keyframes fade {
+            from {
+                opacity: .4;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        /* About Section */
+        
+        #about p {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        /* Contact Section */
+        
+       /* CONTACT SECTION GRID */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* two equal columns */
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* LEFT BOX */
+.contact-info {
+    padding: 25px;
+    background: #fff;
+    border-radius: 10px;
+}
+
+/* RIGHT BOX — Google Map */
+.contact-map {
+    padding: 0;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.contact-map iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 350px;
+    border: none;
+    border-radius: 10px;
+}
+
+/* INFO BLOCK STYLING */
+.info-block {
+    margin-bottom: 20px;
+}
+
+.info-block h4 {
+    margin-bottom: 5px;
+}
+
+/* RESPONSIVE — Stack on Mobile */
+@media (max-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr; /* stacked in 1 column */
+    }
+
+    .contact-map iframe {
+        min-height: 300px;
+    }
+}
+
+        /* Mobile Footer Navigation */
+        
+        .mobile-footer-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        
+        .mobile-footer-nav a {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 5px;
+            text-decoration: none;
+            color: var(--gray);
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+        
+        .mobile-footer-nav a.active {
+            color: var(--secondary);
+        }
+        
+        .mobile-footer-nav i {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        /* Footer */
+        
+        .site-footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+/* CUSTOMER SECTION */
+.customer-section {
+    padding: 60px 20px;
+}
+
+.customer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 35px; /* equal space between cards */
+    align-items: stretch;
+}
+
+.customer-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    transition: transform 0.3s ease;
+}
+
+.customer-card:hover {
+    transform: translateY(-6px);
+}
+
+.customer-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* FIX → Perfect equal spacing inside card */
+.customer-content {
+    padding: 25px 25px 30px; /* controlled vertical spacing */
+    text-align: center;
+}
+
+.customer-content h3 {
+    font-size: 1.35rem;
+    margin-bottom: 12px;  /* equal gap under title */
+    font-weight: 700;
+    color: #222;
+}
+
+.customer-content p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5; /* smooth clean spacing */
+    margin-top: 6px; /* small clean gap */
+}
+
+/* ORANGE UNDERLINES / LINKS */
+.customer-content a {
+    color: #ff6600;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.customer-content a:hover {
+    text-decoration: underline;
+}
+
+/* MOBILE OPTIMIZATION */
+@media (max-width: 480px) {
+    .customer-img {
+        height: 160px;
+    }
+    .customer-content {
+        padding: 20px;
+    }
+    .customer-content h3 {
+        font-size: 1.15rem;
+    }
+    .customer-content p {
+        font-size: 0.95rem;
+    }
+}
+
+
+ 
+        .testimonial-section {
+            background: var(--light);
+            padding: 80px 0;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        
+        .testimonial-card:before {
+            content: '"';
+            font-size: 5rem;
+            color: var(--light);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            line-height: 1;
+        }
+        
+        .testimonial-text {
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+        
+        .author-info h4 {
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .author-info p {
+            color: var(--gray);
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        
+/* Center section */
+.section {
+    display: flex;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+/* Glass blur card */
+.about-card {
+    max-width: 800px;
+    width: 100%;
+    padding: 30px;
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(5px);
+
+    color: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+
+    margin: 0 auto;        /* centers the card */
+    gap: 20px;             /* not needed but safe */
+    margin-left: 20px;     /* left gap */
+    margin-right: 20px;    /* right gap */
+}
+
+/* Add more side padding on mobile */
+@media (max-width: 600px) {
+    .about-card {
+        padding: 25px 18px;
+        margin-left: 15px;   /* smaller mobile gap */
+        margin-right: 15px;
+    }
+}
+
+/* About list styling */
+.about-list {
+    list-style: none;
+    padding: 0;
+}
+
+.about-list li {
+    margin-bottom: 12px;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+
+        /* Responsive Styles */
+        
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            .nav {
+                display: none;
+            }
+            .mobile-footer-nav {
+                display: flex;
+            }
+            .section {
+                padding: 60px 0;
+            }
+            .home {
+                padding: 150px 0 80px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.6rem;
+            }
+            .home {
+                padding: 120px 0 60px;
+            }
+            .media-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+/* CONTACT INFO TEXT STYLING */
+.contact-info {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.contact-info h3 {
+    margin-bottom: 15px;
+    color: #222;
+    font-weight: 700;
+}
+
+.contact-info .info-block {
+    margin-bottom: 20px; /* spacing between blocks */
+}
+
+.contact-info h4 {
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: 600;
+}
+
+/* P TAG STYLING (YOUR REQUIREMENT) */
+.contact-info p {
+    margin: 0;                   /* remove browser default gap */
+    margin-top: 8px;             /* clean separate spacing */
+    color: #000;                 /* pure black text */
+    font-size: 16px;
+    line-height: 1.5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* Base Font */
+.contact-info {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Space between blocks */
+.contact-info .info-block {
+    margin-bottom: 20px;
+}
+
+/* Headings */
+.contact-info h4 {
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Paragraph styling */
+.contact-info p {
+    margin: 5px 0;
+    color: #000;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Social Icons */
+.social-icons {
+    margin-top: 15px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Icon styles */
+.social-icons a {
+    font-size: 26px;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+/* WhatsApp */
+.social-icons .whatsapp {
+    color: #030303;
+}
+
+.social-icons .whatsapp:hover {
+    color: #0c0c0c;
+}
+
+/* Instagram */
+.social-icons .instagram {
+    color: #0a0a0a;
+}
+
+.social-icons .instagram:hover {
+    color: #1a1a1a;
+}
+.phone-link {
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.phone-link:hover {
+    color: #000000; /* orange hover effect */
+    text-decoration: underline;
+}
+
+    </style>
 </head>
 
 <body>
 
     <!-- Header / Navigation -->
     <header class="site-header">
-        <div class="header-inner">
+        <div class="container header-inner">
             <a href="#home" class="logo">Supreme Rolling <span>Shutters</span></a>
             <nav class="nav" id="nav">
                 <a href="#home">Home</a>
-                <a href="#categories">Category</a>
                 <a href="#products">Products</a>
-                <a href="#about">About</a>
                 <a href="#our-work">Our Work</a>
+                <a href="#customer">Customers</a>
+                <a href="#about">About</a>
                 <a href="#contact">Contact</a>
             </nav>
         </div>
@@ -28,30 +824,9 @@
     <!-- Hero Section -->
     <section id="home" class="home section">
         <div class="container">
-            <h1>The Top Rolling Shutter Manufacturers In The Game</h1>
-            <p>High-quality, durable, and affordable rolling shutters for every need.</p>
+            <h1>The Top Rolling Shutter Manufacturers Where Qyality Speaks</h1>
+            <p>High-quality, and affordable rolling shutters for every need.</p>
             <a href="#products" class="btn primary">Explore Now</a>
-        </div>
-    </section>
-
-    <!-- CATEGORIES SECTION -->
-    <section id="categories" class="section alt">
-        <div class="container">
-            <h2>Our Categories</h2>
-            <div class="media-grid">
-                <div class="media-item">
-                    <img src="Steel Rolling Shutters.jpg" alt="Industrial Shutter">
-                    <span>Industrial Shutter</span>
-                </div>
-                <div class="media-item">
-                    <img src="33.jpg" alt="Garage Shutter">
-                    <span>Garage Shutter</span>
-                </div>
-                <div class="media-item">
-                    <img src="55.jpg" alt="Automatic Shutter">
-                    <span>Automatic Shutter</span>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -61,15 +836,43 @@
             <h2>Our Products</h2>
             <div class="media-grid">
                 <div class="media-item">
-                    <img src="33.jpg" alt="Steel Rolling Shutter">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Steel Rolling Shutter">
                     <span>Steel Rolling Shutter</span>
                 </div>
                 <div class="media-item">
-                    <img src="Steel Rolling Shutters.jpg" alt="Grill Rolling Shutter">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Grill Rolling Shutter">
                     <span>Grill Rolling Shutter</span>
                 </div>
                 <div class="media-item">
-                    <img src="55.jpg" alt="PVC Rolling Shutter">
+                    <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="PVC Rolling Shutter">
+                    <span>PVC Rolling Shutter</span>
+                </div>
+                <div class="media-item">
+                    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Grill Rolling Shutter">
+                    <span>Grill Rolling Shutter</span>
+                </div>
+                <div class="media-item">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="PVC Rolling Shutter">
+                    <span>PVC Rolling Shutter</span>
+                </div>
+                <div class="media-item">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Steel Rolling Shutter">
+                    <span>Steel Rolling Shutter</span>
+                </div>
+                <div class="media-item">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Grill Rolling Shutter">
+                    <span>Grill Rolling Shutter</span>
+                </div>
+                <div class="media-item">
+                    <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="PVC Rolling Shutter">
+                    <span>PVC Rolling Shutter</span>
+                </div>
+                <div class="media-item">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Grill Rolling Shutter">
+                    <span>Grill Rolling Shutter</span>
+                </div>
+                <div class="media-item">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="PVC Rolling Shutter">
                     <span>PVC Rolling Shutter</span>
                 </div>
             </div>
@@ -77,116 +880,238 @@
     </section>
 
     <!-- OUR WORK / SLIDESHOW SECTION -->
-    <section id="our-work" class="section">
+    <section id="our-work" class="section alt">
         <div class="container">
-            <h2>Our Work</h2>
+            <h3>Our Work</h3>
 
             <div class="slideshow-container">
                 <div class="mySlides fade">
                     <div class="numbertext">1 / 3</div>
-                    <img src="33.jpg" alt="Steel Rolling Shutter">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Steel Rolling Shutter">
                     <div class="text">Steel Rolling Shutter</div>
                 </div>
 
                 <div class="mySlides fade">
                     <div class="numbertext">2 / 3</div>
-                    <img src="55.jpg" alt="Grill Rolling Shutter">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Grill Rolling Shutter">
                     <div class="text">Grill Rolling Shutter</div>
                 </div>
 
                 <div class="mySlides fade">
                     <div class="numbertext">3 / 3</div>
-                    <img src="Steel Rolling Shutters.jpg" alt="PVC Rolling Shutter">
+                    <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="PVC Rolling Shutter">
                     <div class="text">PVC Rolling Shutter</div>
                 </div>
 
-                <!-- Next / Previous buttons -->
+                <!-- Navigation arrows -->
                 <a class="prev">&#10094;</a>
                 <a class="next">&#10095;</a>
             </div>
 
-            <!-- Dots / Indicators -->
-            <div style="text-align:center; margin-top: 20px;">
+            <!-- Dots -->
+            <div class="dots-container">
                 <span class="dot"></span>
                 <span class="dot"></span>
                 <span class="dot"></span>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- CUSTOMER SECTION -->
+    <section id="customer" class="customer-section">
+        <div class="container">
+            <h2>Our Valued Customers</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 40px;">We take pride in serving a diverse range of clients across various industries. Here are some of our satisfied customers.</p>
+
+            <div class="customer-grid">
+                <div class="customer-card">
+                    <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Commercial Building" class="customer-img">
+                    <div class="customer-content">
+                        <h3>Commercial Complex</h3>
+                        <p>Installed automatic rolling shutters for enhanced security</p>
+                    </div>
+                </div>
+
+                <div class="customer-card">
+                    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Industrial Facility" class="customer-img">
+                    <div class="customer-content">
+                        <h3>Industrial Warehouse</h3>
+                        <p>Custom industrial shutters for large entry points</p>
+                    </div>
+                </div>
+
+                <div class="customer-card">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Residential Property" class="customer-img">
+                    <div class="customer-content">
+                        <h3>Residential Apartments</h3>
+                        <p>PVC rolling shutters for garage and window security</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIAL SECTION -->
+    <section class="testimonial-section">
+        <div class="container">
+            <h3>What Our Customers Say</h3>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        Supreme Rolling Shutters provided excellent service from consultation to installation. Their products are durable and the team was professional throughout the process.
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="boy.png" alt="Customer" class="author-img">
+                        <div class="author-info">
+                            <h4>Rajesh Kumar</h4>
+                            <p>Commercial Property Owner</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        We needed industrial shutters for our warehouse and Supreme delivered beyond our expectations. The quality is exceptional and the pricing was competitive.
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="woman.png" alt="Customer" class="author-img">
+                        <div class="author-info">
+                            <h4>Priya Sharma</h4>
+                            <p>Logistics Manager</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        The automatic rolling shutters installed in our apartment complex have been working flawlessly. Great security solution with modern convenience.
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="man.png" alt="Customer" class="author-img">
+                        <div class="author-info">
+                            <h4>Anil Patel</h4>
+                            <p>Residential Society President</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section">
-        <div class="container">
-            <h2>About Us</h2>
-            <p>
-                Supreme Rolling Shutters is a renowned manufacturer and supplier of high-quality rolling shutters. We specialize in providing durable, modern, and cost-effective solutions for both residential and industrial clients. We custom design solutions to help
-                clients achieve their requirements. Our primary motto is customer satisfaction. We are located at Station Road Bijapur, Karnataka. Contact us for the best deals!
-            </p>
-        </div>
-    </section>
+<section id="about" class="section">
+    <div class="about-card">
+        <h2>About Us</h2>
+        <ul class="about-list">
+            <li><b>Established in 2004</b> with strong industry experience.</li>
+            <li>Specialize in <b>manufacturing and installing rolling shutters</b> for shops, homes, and industries.</li>
+            <li>Use <b>premium GI and polycarbonate materials</b> for long-lasting performance.</li>
+            <li>Offer a <b>wide range of shutter types</b>: Push Pull, Gear, Motorized, Round, Full Flat, Half Flat, and Perforated.</li>
+            <li>Provide <b>smooth operation, durability, and low maintenance</b> in every design.</li>
+            <li>Successfully <b>installed more than 1,00,000 shutters</b> across South India.</li>
+            <li>Deliver services to <b>Tamil Nadu, Kerala, Karnataka, Pondicherry, and Andhra Pradesh.</b></li>
+            <li>Focus on <b>high quality, fast delivery, and customer satisfaction.</b></li>
+            <li>Build <b>long-term customer relationships</b> through reliable service and fair pricing.</li>
+        </ul>
+    </div>
+</section>
+
 
     <!-- Contact Section -->
-    <section id="contact" class="section contact-section">
-        <div class="container contact-container">
-            <h2>Contact Us</h2>
-            <div class="contact-grid">
+<section id="contact" class="section contact-section alt">
+    <div class="container contact-container">
+        <h3>Contact Us</h3>
 
-                <!-- LEFT SIDE — Our Information -->
-                <div class="contact-info glass-box">
-                    <h3>Our Information</h3>
-                    <div class="info-block">
-                        <h4>Office Address</h4>
-                        <p>Selaikkariamman Kovil, valaagam, Alagai Nagar, Rajapalayam, Tamil Nadu 626108</p>
-                    </div>
-                    <div class="info-block">
-                        <h4>General Enquiry</h4>
-                        <p>supreme.rollingshutters02@gmail.com</p>
-                    </div>
-                    <div class="info-block">
-                        <h4>Call Us</h4>
-                        <p>+91-09894861777</p>
-                    </div>
-                    <div class="info-block">
-                        <h4>Our Timing</h4>
-                        <p>Wednesday
-Open 24 hours
-Thursday
-Open 24 hours
-Friday
-Open 24 hours
-Saturday
-Open 24 hours
-Sunday
-Open 24 hours
-Monday
-Open 24 hours
-Tuesday
-Open 24 hours</p>
-                    </div>
-                </div>
-            </div>
+        <div class="contact-grid">
+
+            <!-- LEFT SIDE — Our Information -->
+            <div class="contact-info glass-box">
+                <h3>Our Information</h3>
+
+  <!-- Office Address -->
+    <div class="info-block">
+        <h4>Office Address :</h4>
+        <p>Selaikkariamman Kovil, Valaagam, Alagai Nagar, Rajapalayam, Tamil Nadu 626108, India</p>
+    </div>
+
+    <!-- Branches -->
+    <div class="info-block">
+        <h4>Our Branches :</h4>
+        <p>Madurai</p>
+        <p>Rajapalayam</p>
+        <p>Bangalore</p>
+    </div>
+
+    <!-- Email -->
+    <div class="info-block">
+        <h4>General Enquiry :</h4>
+        <p>supreme.rollingshutters02@gmail.com</p>
+    </div>
+
+    <!-- Phone -->
+<div class="info-block">
+    <h4>Call Us :</h4>
+    <p><a href="tel:+919894861777" class="phone-link">+91-09894861777</a></p>
+</div>
+
+
+    <!-- Timing -->
+    <div class="info-block">
+        <h4>Our Timing :</h4>
+        <p>Open 24 hours, all days of the week</p>
+    </div>
+
+    <!-- Social Icons -->
+    <div class="social-icons">
+        <a href="https://wa.me/919894861777" target="_blank" class="whatsapp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+
+        <a href="https://www.instagram.com/" target="_blank" class="instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </div>
+</div>
+
+            <!-- RIGHT SIDE — Google Map -->
+<div class="contact-map glass-box">
+    <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3921.750574168777!2d77.5621329!3d9.4387648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b06e82a9848b505%3A0xff4bafad86abc42e!2sSUPREME%20ROLLING%20SHUTTERS!5e0!3m2!1sen!2sin!4v1700000000000"
+        width="100%"
+        height="100%"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+</div>
+
+
         </div>
-    </section>
+    </div>
+</section>
+
 
     <!-- Mobile Footer Navigation -->
     <div class="mobile-footer-nav">
-        <a href="#home">
-            <img src="H.png" alt="Home Icon"><span>Home</span>
-        </a>
-        <a href="#categories">
-            <img src="C (2).png" alt="Category Icon"><span>Category</span>
+        <a href="#home" class="active">
+            <i class="fas fa-home"></i><span>Home</span>
         </a>
         <a href="#products">
-            <img src="P.png" alt="Products Icon"><span>Products</span>
-        </a>
-        <a href="#about">
-            <img src="A.png" alt="About Icon"><span>About</span>
+            <i class="fas fa-box-open"></i><span>Products</span>
         </a>
         <a href="#our-work">
-            <img src="W.png" alt="Our Work Icon"><span>Our Work</span>
+            <i class="fas fa-briefcase"></i><span>Our Work</span>
+        </a>
+        <a href="#customer">
+            <i class="fas fa-users"></i><span>Customers</span>
+        </a>
+        <a href="#about">
+            <i class="fas fa-info-circle"></i><span>About</span>
         </a>
         <a href="#contact">
-            <img src="C.png" alt="Contact Icon"><span>Contact</span>
+            <i class="fas fa-envelope"></i><span>Contact</span>
         </a>
     </div>
 
@@ -220,6 +1145,7 @@ Open 24 hours</p>
 
         // Slideshow functionality
         let slideIndex = 1;
+
         showSlides(slideIndex);
 
         function plusSlides(n) {
@@ -231,26 +1157,38 @@ Open 24 hours</p>
         }
 
         function showSlides(n) {
-            let i;
             let slides = document.getElementsByClassName("mySlides");
             let dots = document.getElementsByClassName("dot");
+
             if (n > slides.length) slideIndex = 1;
             if (n < 1) slideIndex = slides.length;
-            for (i = 0; i < slides.length; i++) slides[i].style.display = "none";
-            for (i = 0; i < dots.length; i++) dots[i].className = dots[i].className.replace(" active", "");
+
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.remove("active");
+            }
+
             slides[slideIndex - 1].style.display = "block";
-            dots[slideIndex - 1].className += " active";
+            dots[slideIndex - 1].classList.add("active");
         }
 
-        // Arrow click events
+        // Buttons
         document.querySelector('.prev').addEventListener('click', () => plusSlides(-1));
         document.querySelector('.next').addEventListener('click', () => plusSlides(1));
 
-        // Dot click events
+        // Dots
         const dotElements = document.querySelectorAll('.dot');
-        dotElements.forEach((dot, index) => {
-            dot.addEventListener('click', () => currentSlide(index + 1));
+        dotElements.forEach((dot, i) => {
+            dot.addEventListener('click', () => currentSlide(i + 1));
         });
+
+        // Auto slide every 5s
+        setInterval(() => {
+            plusSlides(1);
+        }, 5000);
     </script>
 </body>
 
